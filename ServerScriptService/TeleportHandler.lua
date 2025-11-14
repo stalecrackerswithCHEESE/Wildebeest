@@ -1,11 +1,12 @@
 -- Declare variables
-local zones = workspace:WaitForChild("TeleportZones")
-
-local events = game.ReplicatedStorage:WaitForChild("Events")
-local zoneEvent = events:WaitForChild("ZoneEvent")
-
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TeleportService = game:GetService("TeleportService")
 local Players = game:GetService("Players")
+
+local zones = workspace.TeleportZones
+
+local events = ReplicatedStorage.Events
+local zoneEvent = events.ZoneEvent
 
 -- Table of zones and their properties
 local teleportZones = {
