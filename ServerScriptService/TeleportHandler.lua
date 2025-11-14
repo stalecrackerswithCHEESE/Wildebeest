@@ -261,19 +261,18 @@ zoneEvent.OnServerEvent:Connect(function(playerFired, type, amount)
 			end
 			
 			updatePlayerCount(i, 1, teleportZones[i].max)
-			local timeLeft = 20
 			
-			for t=timeLeft-3, 3, -1 do
+			-- Shows a countdown from 20 seconds to 1
+			for t=20, 1, -1 do
 				if not teleportZones[i].created then
 					return
 				end				
-				game.Workspace.TeleportZones[i].BillboardGui.StateLabel.Text = "Leaving in " .. tostring(t+3) .. "..."
+				workspace.TeleportZones[i].BillboardGui.StateLabel.Text = "Leaving in " .. tostring(t) .. "..."
 				task.wait(1)
 				
 			end
 			
 			-- Teleport
-
 			local placeId = 92127384255319 -- Game
 			local playerList = {}
 
@@ -302,15 +301,9 @@ zoneEvent.OnServerEvent:Connect(function(playerFired, type, amount)
 				warn("Teleport failed: " .. tostring(result))
 			end
 			
+			task.wait(1)
+			workspace.TeleportZones[i].BillboardGui.StateLabel.Text = "Teleporting..."
 			
-			-- Last 3 seconds of loading
-			for t=3, 1, -1 do
-				if not teleportZones[i].created then
-					return
-				end
-				game.Workspace.TeleportZones[i].BillboardGui.StateLabel.Text = "Leaving in " .. tostring(t) .. "..."
-				task.wait(1)
-			end
 			teleportZones[i].created = false
 			disband()			
 		end
